@@ -9,7 +9,6 @@ in
     extraConfig = {
       branch.autosetuprebase = "always";
       color.ui = "auto";
-      core.excludesfile = "${config.home.homeDirectory}/.gitignore_global";
       init.defaultBranch = "main";
       pull.rebase = true;
       push.autoSetupRemote = true;
@@ -19,5 +18,26 @@ in
     aliases = {
       "hist" = "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit";
     };
+    ignores = [
+      ".DS_Store"
+      "*~"
+      "\#*\#"
+      "/.emacs.desktop"
+      "/.emacs.desktop.lock"
+      "*.elc"
+      "auto-save-list"
+      "tramp"
+      ".\#*"
+      ".rbenv-gemsets"
+      ".vscode"
+      ".idea"
+      "*.iml"
+      ".directory"
+      ".ruby-version"
+      ".ruby-gemset"
+      ".mise.toml"
+      ".venv"
+      ".envrc"
+    ];
   };
 }
