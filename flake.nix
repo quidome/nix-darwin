@@ -15,7 +15,6 @@
   outputs = { self, ... }@inputs:
     let
       inherit (inputs.darwin.lib) darwinSystem;
-      inherit (inputs.nixpkgs.lib) nixosSystem;
       inherit (inputs.nixpkgs.lib)
         attrValues optionalAttrs singleton;
 
