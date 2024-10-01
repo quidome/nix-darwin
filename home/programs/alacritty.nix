@@ -1,17 +1,16 @@
 { config, pkgs, lib, ... }:
 with lib;
 let
-  alacrittyEnabled = config.programs.alacritty.enable;
+  cfg = config.programs.alacritty;
   font = "FiraCode Nerd Font";
-  fontSize = (if pkgs.stdenv.isDarwin then 14 else 11);
 in
 {
-  config.programs.alacritty.settings = mkIf alacrittyEnabled {
+  config.programs.alacritty.settings = mkIf cfg.enable {
     selection.save_to_clipboard = true;
     cursor.style = "beam";
 
     font = {
-      size = fontSize;
+      size = 14;
 
       normal.family = font;
       normal.style = "Regular";

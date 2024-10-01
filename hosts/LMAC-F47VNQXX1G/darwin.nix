@@ -6,7 +6,7 @@
   ];
 
   environment.shells = [ pkgs.zsh ];
-
+  ids.gids.nixbld = 350;
   nix.settings.substituters = [ "https://cache.nixos.org/" ];
   nix.settings.trusted-users = [ "@admin" ];
   nix.configureBuildUsers = true;

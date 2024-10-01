@@ -1,10 +1,5 @@
-# I did not invent this myself, this was starting point:
-# https://gist.github.com/jmatsushita/5c50ef14b4b96cb24ae5268dab613050
-#
-# Initially I will just manage my macbook this way and when I'm
-# more comfortable I'll look into migrating the other systems to flakes as well.
 {
-  description = "quidome's nix flake";
+  description = "quidome's darwin-nix flake";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
@@ -42,70 +37,6 @@
       };
     in
     {
-
-      nixosConfigurations = {
-        beast = nixosSystem {
-          system = "x86_64-linux";
-          modules = [
-            ./hosts/beast/system.nix
-
-            inputs.home-manager.nixosModules.home-manager
-            {
-              nixpkgs = nixpkgsConfig;
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.quidome = import ./hosts/beast/home.nix;
-            }
-          ];
-        };
-
-        coolding = nixosSystem {
-          system = "x86_64-linux";
-          modules = [
-            ./hosts/coolding/system.nix
-
-            inputs.home-manager.nixosModules.home-manager
-            {
-              nixpkgs = nixpkgsConfig;
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.quidome = import ./hosts/coolding/home.nix;
-            }
-          ];
-        };
-
-        nimbus = nixosSystem {
-          system = "x86_64-linux";
-          modules = [
-            {
-              nixpkgs = nixpkgsConfig;
-
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.quidome = import ./hosts/nimbus/home.nix;
-            }
-            inputs.home-manager.nixosModules.home-manager
-
-            ./hosts/nimbus/system.nix
-          ];
-        };
-
-        truce = nixosSystem {
-          system = "x86_64-linux";
-          modules = [
-            ./hosts/truce/system.nix
-
-            inputs.home-manager.nixosModules.home-manager
-            {
-              nixpkgs = nixpkgsConfig;
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.quidome = import ./hosts/truce/home.nix;
-            }
-          ];
-        };
-      };
-
       darwinConfigurations = {
         LMAC-F47VNQXX1G = darwinSystem {
           system = "aarch64-darwin";
