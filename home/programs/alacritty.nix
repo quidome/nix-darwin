@@ -53,10 +53,10 @@ in
     };
 
     window = {
-      option_as_alt = mkIf pkgs.stdenv.isDarwin "Both";
+      option_as_alt = "Both";
     };
 
-    shell = mkIf pkgs.stdenv.isDarwin {
+    shell = {
       program = "login";
       args = [ "-fp" config.home.username ];
     };
