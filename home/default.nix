@@ -18,10 +18,15 @@
     '';
 
     packages = with pkgs;  [
-      # Base
+      # Core
+      bitwarden-cli
       bottom
+      cocoapods
+
+      coreutils
       curl
       dogdns
+      element-desktop
       fd
       fzf
       git-crypt
@@ -30,15 +35,17 @@
       gopass
       jless
       jq
+      m-cli # useful macOS CLI commands
+      pandoc
+      pinentry_mac
+      plantuml
       ripgrep
       shellcheck
+      watch
       wget
       yq-go
-      bitwarden-cli
-      element-desktop
-      pandoc
-      plantuml
 
+      # Fonts
       (pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; })
 
       # Useful nix related tools
@@ -46,11 +53,6 @@
       comma # run software from without installing it
       niv # easy dependency management for nix projects
       nixpkgs-fmt
-      cocoapods
-      coreutils
-      m-cli # useful macOS CLI commands
-      watch
-      pinentry_mac
     ];
 
     sessionPath = [
