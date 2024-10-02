@@ -1,20 +1,14 @@
 { config, pkgs, lib, ... }:
 with lib;
 let
-  isDarwin = pkgs.stdenv.isDarwin;
-  syncthingEnabled = config.my.syncthing.enable;
+  cfg = config.my.syncthing;
 in
 {
-  config = mkIf syncthingEnabled {
-    # Linux setup for syncthing
-    services.syncthing = mkIf (! isDarwin) {
-      enable = true;
-    };
+  options.my.syncthing.enable = lib.mkEnableOption "syncthing";
 
-
-    # Darwin setup for syncthing
-    home.packages = with pkgs; mkIf isDarwin [ syncthing ];
-    launchd.agents.syncthing = mkIf isDarwin {
+  config = mkIf cfg.enable {
+    home.packages = with pkgs; [ syncthing ];
+    launchd.agents.syncthing = {
       # whether to enable the LaunchAgent
       enable = true;
 
