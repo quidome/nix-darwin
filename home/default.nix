@@ -39,6 +39,7 @@
       pandoc
       pinentry_mac
       plantuml
+      rename
       ripgrep
       shellcheck
       watch
