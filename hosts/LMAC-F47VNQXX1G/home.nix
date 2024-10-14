@@ -35,6 +35,12 @@
     sessionPath = [
       "/Applications/IntelliJ IDEA.app/Contents/MacOS"
     ];
+
+    # Not a big fan of doing it like this but it works :(
+    file.".env.d/50-gcloud-sdk.sh".text = ''
+      [ -f "$(brew --prefix)/share/google-cloud-sdk/path.zsh.inc" ] && . "$(brew --prefix)/share/google-cloud-sdk/path.zsh.inc"
+      [ -f "$(brew --prefix)/share/google-cloud-sdk/completion.zsh.inc" ] && . "$(brew --prefix)/share/google-cloud-sdk/completion.zsh.inc"
+    '';
   };
 
   
@@ -53,5 +59,8 @@
       nix-update = "darwin-rebuild switch --flake $HOME/dev/github.com/quidome/nix-config";
       idea = "open -na \"IntelliJ IDEA.app\" --args \"$@\"";
       em = "emacsclient -t -a ''";
+      k = "kubectl";
+      kns = "kubens";
+      kctx = "kubectx";
     };
 }
