@@ -1,9 +1,7 @@
 { pkgs, ... }:
 {
   imports = [
-    ./home-brew.nix
     ./home-vars.nix
-
     ../../home
   ];
 
@@ -35,32 +33,45 @@
     sessionPath = [
       "/Applications/IntelliJ IDEA.app/Contents/MacOS"
     ];
-
-    # Not a big fan of doing it like this but it works :(
-    file.".env.d/50-gcloud-sdk.sh".text = ''
-      [ -f "$(brew --prefix)/share/google-cloud-sdk/path.zsh.inc" ] && . "$(brew --prefix)/share/google-cloud-sdk/path.zsh.inc"
-      [ -f "$(brew --prefix)/share/google-cloud-sdk/completion.zsh.inc" ] && . "$(brew --prefix)/share/google-cloud-sdk/completion.zsh.inc"
-    '';
   };
 
-  
-    programs.zsh.initExtra = ''
-      eval "$(fnm env --use-on-cd)";
+  programs.zsh.initExtra = ''
+    eval "$(fnm env --use-on-cd)";
 
-      # Create link to /var/run/docker.sock
-      if command -v colima >/dev/null 2>&1 && [ ! -L "/var/run/docker.sock" ] ; then
-        local docker_link="sudo ln -sf $HOME/.colima/docker.sock /var/run/docker.sock"
-        echo "$docker_link"
-        eval $docker_link
-      fi
-    '';
+    # Create link to /var/run/docker.sock
+    if command -v colima >/dev/null 2>&1 && [ ! -L "/var/run/docker.sock" ] ; then
+      local docker_link="sudo ln -sf $HOME/.colima/docker.sock /var/run/docker.sock"
+      echo "$docker_link"
+      eval $docker_link
+    fi
+  '';
 
-    programs.zsh.shellAliases = {
-      nix-update = "darwin-rebuild switch --flake $HOME/dev/github.com/quidome/nix-config";
-      idea = "open -na \"IntelliJ IDEA.app\" --args \"$@\"";
-      em = "emacsclient -t -a ''";
-      k = "kubectl";
-      kns = "kubens";
-      kctx = "kubectx";
-    };
+  programs.zsh.shellAliases = {
+    nix-update = "darwin-rebuild switch --flake $HOME/dev/github.com/quidome/nix-config";
+    idea = "open -na \"IntelliJ IDEA.app\" --args \"$@\"";
+    em = "emacsclient -t -a ''";
+  };
+
+  settings.brew = {
+    brews = [
+      "openssl"
+      "xz"
+      "jenv"
+      "pyenv"
+      "pyenv-virtualenv"
+    ];
+    casks = [
+      "bitwarden"
+      "browserosaurus"
+      "drawio"
+      "emacs"
+      "logseq"
+      "obsidian"
+      "raycast"
+      "signal"
+      "zulu@21"
+    ];
+  };
+
+  settings.gcloud.enable = true;
 }

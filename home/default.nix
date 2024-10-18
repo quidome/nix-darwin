@@ -1,6 +1,8 @@
 { config, lib, pkgs, ... }:
 {
   imports = [
+    ./brew.nix
+    ./gcloud.nix
     ./programs
     ./services
   ];

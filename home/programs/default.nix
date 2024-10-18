@@ -3,6 +3,7 @@
     ./alacritty.nix
     ./git.nix
     ./helix
+    ./mise.nix
     ./neovim.nix
     ./starship.nix
     ./tmux.nix

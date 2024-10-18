@@ -1,0 +1,14 @@
+{ config, lib, ... }:
+let cfg = config.settings.mise;
+in
+{
+  options.settings.mise.enable = lib.mkEnableOption "mise";
+
+  config = lib.mkIf cfg.enable {
+    settings.brew.brews = [ "mise" ];
+
+    programs.zsh.initExtra = lib.mkIf config.programs.zsh.enable ''
+      eval "$(mise activate zsh)"
+    '';
+  };
+}
