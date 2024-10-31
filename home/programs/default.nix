@@ -2,6 +2,7 @@
   imports = [
     ./alacritty.nix
     ./git.nix
+    ./gpg.nix
     ./helix
     ./mise.nix
     ./neovim.nix

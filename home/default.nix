@@ -8,17 +8,6 @@
   ];
 
   home = {
-    file.".gnupg/gpg-agent.conf".text = ''
-      pinentry-program ${lib.getExe pkgs.pinentry_mac}
-      enable-ssh-support
-
-      default-cache-ttl 7200
-      max-cache-ttl 14400
-
-      default-cache-ttl-ssh 43200
-      max-cache-ttl-ssh 86400
-    '';
-
     packages = with pkgs;  [
       # Core
       bitwarden-cli
@@ -33,13 +22,11 @@
       fzf
       git-crypt
       gitui
-      gnupg
       gopass
       jless
       jq
       m-cli # useful macOS CLI commands
       pandoc
-      pinentry_mac
       plantuml
       rename
       ripgrep
@@ -108,12 +95,6 @@
   programs.zsh.enableCompletion = true;
   programs.zsh.initExtraBeforeCompInit = "fpath+=($HOME/.zsh/completion/)";
   programs.zsh.initExtra = ''
-    # Configure gpg/ssh
-    unset SSH_AGENT_PID
-    export GPG_TTY="$(tty)"
-    export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
-    gpgconf --launch gpg-agent
-
     # Add function to update nixpkgs index
     download_nixpkgs_cache_index () {
       location=~/.cache/nix-index
