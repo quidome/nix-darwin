@@ -38,13 +38,6 @@
   programs.zsh.initExtra = ''
     # Configure fnm
     eval "$(fnm env --use-on-cd)";
-
-    # Create link to /var/run/docker.sock
-    if command -v colima >/dev/null 2>&1 && [ ! -L "/var/run/docker.sock" ] ; then
-      local docker_link="sudo ln -sf $HOME/.colima/docker.sock /var/run/docker.sock"
-      echo "$docker_link"
-      eval $docker_link
-    fi
   '';
 
   programs.zsh.shellAliases = {
