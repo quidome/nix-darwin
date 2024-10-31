@@ -8,6 +8,7 @@ in
     settings.brew.brews = [ "mise" ];
 
     programs.zsh.initExtra = lib.mkIf config.programs.zsh.enable ''
+      # Configure mise
       eval "$(mise activate zsh)"
     '';
   };

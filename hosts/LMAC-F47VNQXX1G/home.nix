@@ -36,6 +36,7 @@
   };
 
   programs.zsh.initExtra = ''
+    # Configure fnm
     eval "$(fnm env --use-on-cd)";
 
     # Create link to /var/run/docker.sock
