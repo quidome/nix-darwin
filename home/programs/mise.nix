@@ -1,5 +1,6 @@
 { config, lib, ... }:
-let cfg = config.settings.mise;
+let 
+  cfg = config.settings.mise;
 in
 {
   options.settings.mise.enable = lib.mkEnableOption "mise";
