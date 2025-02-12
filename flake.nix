@@ -2,14 +2,12 @@
   description = "quidome's darwin-nix flake";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-24.11-darwin";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-
-    home-manager.url = "github:nix-community/home-manager/release-24.05";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
-
-    darwin.url = "github:lnl7/nix-darwin/master";
+    darwin.url = "github:LnL7/nix-darwin/nix-darwin-24.11";
     darwin.inputs.nixpkgs.follows = "nixpkgs";
+    home-manager.url = "github:nix-community/home-manager/release-24.11";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = { self, ... }@inputs:
@@ -38,37 +36,24 @@
       };
 
       args = inputs;
-
-      mkHost = host: inputs.darwin.lib.darwinSystem {
-        inherit pkgs;
-        modules = [
-          { _module.args = args; }
-          ./configuration.nix
-          ./hosts/${host}/darwin.nix
-        ];
-      };
-
-      mkHome = user: host: inputs.home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        modules = [
-          { _module.args = args; }
-          ./hosts/${host}/home.nix
-          {
-            home = {
-              username = user;
-              homeDirectory = "/Users/${user}";
-            };
-          }
-        ];
-      };
-    in
+in
     {
       darwinConfigurations = {
-        LMAC-F47VNQXX1G = mkHost "LMAC-F47VNQXX1G";
-      };
+        LMAC-LK9GJDPQXR = inputs.darwin.lib.darwinSystem {
+          inherit(pkgs);
+          system = "aarch64-darwin";
+          modules = [
+            ./configuration.nix
+            ./hosts/LMAC-LK9GJDPQXR/darwin.nix
 
-      homeConfigurations = {
-        "qmeijer@LMAC-F47VNQXX1G" = mkHome "qmeijer" "LMAC-F47VNQXX1G";
+            inputs.home-manager.darwinModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.qmeijer = import ./hosts/LMAC-LK9GJDPQXR/home.nix;
+            }
+          ];
+        };
       };
 
       # Overlays --------------------------------------------------------------- {{{

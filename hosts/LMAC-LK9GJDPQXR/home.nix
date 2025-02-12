@@ -64,7 +64,6 @@
     casks = [
       "bitwarden"
       "browserosaurus"
-      "drawio"
       "emacs"
       "logseq"
       "obsidian"
