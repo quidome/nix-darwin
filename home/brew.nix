@@ -20,9 +20,8 @@ in
 
   config = {
     programs.zsh.initExtra = mkIf config.programs.zsh.enable ''
-      # Homebrew settings
+      # Configure brew
       eval "$(/opt/homebrew/bin/brew shellenv)"
-      FPATH="$(brew --prefix)/share/zsh/site-functions:''${FPATH}"
     '';
 
     home.sessionVariables = {
