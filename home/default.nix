@@ -10,7 +10,7 @@
   home = {
     packages = with pkgs;  [
       # Core
-      bitwarden-cli
+      # bitwarden-cli
       bottom
       cocoapods
 
