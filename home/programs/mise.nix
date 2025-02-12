@@ -1,5 +1,5 @@
 { config, lib, ... }:
-let 
+let
   cfg = config.settings.mise;
 in
 {
