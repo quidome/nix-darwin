@@ -56,7 +56,7 @@ in
       option_as_alt = "Both";
     };
 
-    shell = {
+    terminal.shell = {
       program = "login";
       args = [ "-fp" config.home.username ];
     };
