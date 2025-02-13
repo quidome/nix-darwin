@@ -54,7 +54,12 @@
   };
 
   settings.brew = {
+    taps = [
+      "homebrew/services"
+    ];
     brews = [
+      "homebrew/homebrew-bol/proxer"
+      "homebrew/homebrew-bol/bol-cli"
       "openssl"
       "xz"
       "jenv"
