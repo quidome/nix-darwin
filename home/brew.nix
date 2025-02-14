@@ -5,23 +5,25 @@ let
   cfg = config.settings.brew;
 
   # Normalize the input to always be a list of lists
+  # This allows for flexibility in user input (single string or list of strings)
   normalizeInput = input: builtins.map (item: if builtins.isString item then [ item ] else item) input;
 
   normalizedTaps = normalizeInput cfg.taps;
   normalizedBrews = normalizeInput cfg.brews;
   normalizedCasks = normalizeInput cfg.casks;
 
-  generateLines = input: key: builtins.concatStringsSep "\n" (map
-    (entry:
+  # Generate Brewfile lines for a given package type (tap, brew, or cask)
+  generateBrewfileLines = packageType: packageList: builtins.concatStringsSep "\n" (map
+    (package:
       let
-        string = builtins.concatStringsSep "\", \"" entry;
+        packageString = builtins.concatStringsSep "\" \"" package;
       in
-      ''${key} "${string}"'')
-    input);
+      ''${packageType} "${packageString}"'')
+    packageList);
 
-  tapLines = generateLines normalizedTaps "tap";
-  brewLines = generateLines normalizedBrews "brew";
-  caskLines = generateLines normalizedCasks "cask";
+  tapLines = generateBrewfileLines "tap" normalizedTaps;
+  brewLines = generateBrewfileLines "brew" normalizedBrews;
+  caskLines = generateBrewfileLines "cask" normalizedCasks;
 in
 {
   options.settings.brew = {
@@ -40,7 +42,7 @@ in
         (types.listOf types.str)
       ]);
       default = [ ];
-      description = "A single brew string or a list of brews to install using brew.";
+      description = "A list of brews to install using brew.";
     };
 
     casks = mkOption {
@@ -49,30 +51,33 @@ in
         (types.listOf types.str)
       ]);
       default = [ ];
-      description = "A single cask string or a list of casks to install using brew.";
+      description = "A list of casks to install using brew.";
     };
   };
 
   config = {
+    # Configure Zsh to initialize Homebrew if Zsh is enabled
     programs.zsh.initExtra = mkIf config.programs.zsh.enable ''
-      # Configure brew
+      # Initialize Homebrew environment
       eval "$(/opt/homebrew/bin/brew shellenv)"
     '';
 
+    # Set the Homebrew bundle file location
     home.sessionVariables = {
       HOMEBREW_BUNDLE_FILE = "${config.home.homeDirectory}/.config/brewfile";
     };
 
+    # Generate the Brewfile
     home.file.brewfile = {
       target = ".config/brewfile";
       text = ''
-        # taps
+        # Taps (third-party repositories)
         ${tapLines}
 
-        # brews
+        # Formulae (command-line software)
         ${brewLines}
 
-        # casks
+        # Casks (GUI applications)
         ${caskLines}
       '';
     };
