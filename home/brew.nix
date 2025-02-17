@@ -16,7 +16,7 @@ let
   generateBrewfileLines = packageType: packageList: builtins.concatStringsSep "\n" (map
     (package:
       let
-        packageString = builtins.concatStringsSep "\" \"" package;
+        packageString = builtins.concatStringsSep "\", \"" package;
       in
       ''${packageType} "${packageString}"'')
     packageList);
