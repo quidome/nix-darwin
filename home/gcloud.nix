@@ -16,8 +16,8 @@ in
 
       shellAliases = {
         k = "kubectl";
-        kns = "kubens";
-        kctx = "kubectx";
+        kn = "kubens";
+        kc = "kubectx";
       };
     };
   };
