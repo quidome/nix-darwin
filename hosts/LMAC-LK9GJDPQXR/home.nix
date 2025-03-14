@@ -14,7 +14,6 @@
       fnm
       go
       ktlint
-      poetry
 
       # DevOps
       colima
@@ -45,6 +44,11 @@
       echo "$docker_link"
       eval $docker_link
     fi
+
+    # Pyenv setup
+    export PYENV_ROOT="$HOME/.pyenv"
+    [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+    eval "$(pyenv init - zsh)"
   '';
 
   programs.zsh.shellAliases = {
@@ -64,7 +68,7 @@
       "xz"
       "jenv"
       "pyenv"
-      "pyenv-virtualenv"
+      "poetry"
     ];
     casks = [
       "bitwarden"
