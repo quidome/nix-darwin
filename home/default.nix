@@ -26,6 +26,7 @@
       jless
       jq
       m-cli # useful macOS CLI commands
+      nushell
       pandoc
       plantuml
       rename
