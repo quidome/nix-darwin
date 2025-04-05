@@ -14,14 +14,13 @@
       LMAC-LK9GJDPQXR = darwin.lib.darwinSystem {
         system = "aarch64-darwin";
         modules = [
-          ./configuration.nix
-          ./hosts/LMAC-LK9GJDPQXR/darwin.nix
+          ./darwin
 
           home-manager.darwinModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.qmeijer = import ./hosts/LMAC-LK9GJDPQXR/home.nix;
+            home-manager.users.qmeijer = import ./home-manager;
           }
         ];
       };
