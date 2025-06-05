@@ -21,6 +21,7 @@ in
         scrollback_editor = lib.mkIf helixEnabled (lib.getExe pkgs.helix);
         pane_frames = false;
         default_layout = "layout";
+        show_startup_tips = false;
       };
     };
 
