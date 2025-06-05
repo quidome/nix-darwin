@@ -2,28 +2,36 @@
   description = "quidome's darwin-nix flake";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-24.11-darwin";
-    darwin.url = "github:LnL7/nix-darwin/nix-darwin-24.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-25.05-darwin";
+
+    darwin.url = "github:LnL7/nix-darwin/nix-darwin-25.05";
     darwin.inputs.nixpkgs.follows = "nixpkgs";
-    home-manager.url = "github:nix-community/home-manager/release-24.11";
+
+    home-manager.url = "github:nix-community/home-manager/release-25.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { home-manager, darwin, ... }: {
-    darwinConfigurations = {
-      LMAC-LK9GJDPQXR = darwin.lib.darwinSystem {
-        system = "aarch64-darwin";
-        modules = [
-          ./darwin
+  outputs = { self, ... }@inputs:
+    let
+      system = "aarch64-darwin";
 
-          home-manager.darwinModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.qmeijer = import ./home-manager;
-          }
-        ];
+      pkgs = import inputs.nixpkgs {
+        inherit system;
+      };
+    in
+    {
+      darwinConfigurations = {
+        LMAC-LK9GJDPQXR = inputs.darwin.lib.darwinSystem {
+          inherit pkgs;
+          modules = [ ./darwin ];
+        };
+      };
+
+      homeConfigurations = {
+        "qmeijer@LMAC-LK9GJDPQXR" = inputs.home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          modules = [ ./home-manager ];
+        };
       };
     };
-  };
 }

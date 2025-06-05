@@ -11,7 +11,7 @@
   home = {
     language.base = "en_IE.UTF-8";
     language.ctype = "en_IE.UTF-8";
-    stateVersion = "24.05";
+    stateVersion = "25.05";
 
     packages = with pkgs;  [
       # Core
@@ -58,9 +58,6 @@
       libyaml
       postgresql
       stern
-
-      # Fonts
-      (pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; })
 
       # Useful nix related tools
       cachix # adding/managing alternative binary caches hosted by Cachix
@@ -124,7 +121,7 @@
   };
 
   programs.zsh.initExtraBeforeCompInit = "fpath+=($HOME/.zsh/completion/)";
-  programs.zsh.initExtra = ''
+  programs.zsh.initContent = ''
     # Add function to update nixpkgs index
     download_nixpkgs_cache_index () {
       location=~/.cache/nix-index
@@ -171,6 +168,7 @@
     casks = [
       "bitwarden"
       "browserosaurus"
+      "element"
       "emacs"
       "logseq"
       "obsidian"

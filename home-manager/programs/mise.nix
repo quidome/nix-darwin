@@ -8,7 +8,7 @@ in
   config = lib.mkIf cfg.enable {
     settings.brew.brews = [ "mise" ];
 
-    programs.zsh.initExtra = lib.mkIf config.programs.zsh.enable ''
+    programs.zsh.initContent = lib.mkIf config.programs.zsh.enable ''
       # Configure mise
       eval "$(mise activate zsh)"
     '';

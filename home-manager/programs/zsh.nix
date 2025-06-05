@@ -25,7 +25,7 @@ in
 
       defaultKeymap = "emacs";
 
-      initExtra = ''
+      initContent = lib.mkOrder 1500 ''
         # unfortunally a few system paths end up in front of my profile path
         # this just adds the path (again) before the other paths
         export PATH=${config.home.profileDirectory}/bin:$PATH

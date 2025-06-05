@@ -22,7 +22,7 @@ in
       '';
     };
 
-    programs.zsh.initExtra = ''
+    programs.zsh.initContent = ''
       # Configure gpg/ssh
       unset SSH_AGENT_PID
       export GPG_TTY="$(tty)"
