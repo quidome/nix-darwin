@@ -26,10 +26,6 @@ in
       defaultKeymap = "emacs";
 
       initContent = lib.mkOrder 1500 ''
-        # unfortunally a few system paths end up in front of my profile path
-        # this just adds the path (again) before the other paths
-        export PATH=${config.home.profileDirectory}/bin:$PATH
-
         # source all .sh file in .env.d
         if [ -d "$HOME"/.env.d ]; then
           for i in "$HOME"/.env.d/*.sh; do
