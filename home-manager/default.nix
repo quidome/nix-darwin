@@ -22,7 +22,6 @@
       coreutils
       curl
       dogdns
-      element-desktop
       fd
       fzf
       git-crypt
@@ -120,7 +119,6 @@
     em = "emacsclient -t -a ''";
   };
 
-  programs.zsh.initExtraBeforeCompInit = "fpath+=($HOME/.zsh/completion/)";
   programs.zsh.initContent = ''
     # Add function to update nixpkgs index
     download_nixpkgs_cache_index () {
@@ -159,6 +157,7 @@
     brews = [
       "homebrew/homebrew-bol/proxer"
       "homebrew/homebrew-bol/bol-cli"
+      "bitwarden-cli"
       "openssl"
       "xz"
       "jenv"
@@ -166,6 +165,7 @@
       "poetry"
     ];
     casks = [
+      "arc"
       "bitwarden"
       "browserosaurus"
       "element"
@@ -174,6 +174,7 @@
       "obsidian"
       "raycast"
       "signal"
+      "zulu@11"
       "zulu@21"
     ];
   };
