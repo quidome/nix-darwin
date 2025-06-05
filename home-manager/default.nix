@@ -148,7 +148,17 @@
     # jenv setup
     export PATH="$HOME/.jenv/bin:$PATH"
     eval "$(jenv init -)"
+
+    # temp fix until https://github.com/nix-community/home-manager/pull/7117/files is available in flake.lock
+    unset SSH_AGENT_PID
+    export SSH_AUTH_SOCK="$(${pkgs.gnupg}/bin/gpgconf --list-dirs agent-ssh-socket)"
   '';
+
+  services.gpg-agent = {
+    enable = true;
+    pinentry.package = pkgs.pinentry_mac;
+    enableSshSupport = true;
+  };
 
   settings.brew = {
     taps = [
