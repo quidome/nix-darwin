@@ -1,5 +1,8 @@
-{ pkgs, lib, ... }:
 {
+  pkgs,
+  lib,
+  ...
+}: {
   programs.zed-editor = {
     enable = true;
     extensions = [
@@ -7,7 +10,7 @@
       "toml"
     ];
 
-    extraPackages = with pkgs;[
+    extraPackages = with pkgs; [
       nixd
     ];
 
@@ -106,7 +109,7 @@
         ];
       };
       languages = {
-        Nix.language-servers = [ "nixd" "!nil" ];
+        Nix.language-servers = ["nixd" "!nil"];
       };
 
       lsp = {

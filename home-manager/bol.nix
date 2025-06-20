@@ -1,5 +1,4 @@
-{ lib, ... }:
-{
+{lib, ...}: {
   programs.zsh.initContent = lib.mkOrder 550 ''
     eval $(bol completion zsh)
   '';

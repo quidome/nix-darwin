@@ -1,38 +1,43 @@
-{ lib, config, ... }:
-with lib;
-
-let
+{
+  lib,
+  config,
+  ...
+}:
+with lib; let
   cfg = config.settings.brew;
 
   # Normalize the input to always be a list of lists
   # This allows for flexibility in user input (single string or list of strings)
-  normalizeInput = input: builtins.map (item: if builtins.isString item then [ item ] else item) input;
+  normalizeInput = input:
+    builtins.map (item:
+      if builtins.isString item
+      then [item]
+      else item)
+    input;
 
   normalizedTaps = normalizeInput cfg.taps;
   normalizedBrews = normalizeInput cfg.brews;
   normalizedCasks = normalizeInput cfg.casks;
 
   # Generate Brewfile lines for a given package type (tap, brew, or cask)
-  generateBrewfileLines = packageType: packageList: builtins.concatStringsSep "\n" (map
-    (package:
-      let
+  generateBrewfileLines = packageType: packageList:
+    builtins.concatStringsSep "\n" (map
+      (package: let
         packageString = builtins.concatStringsSep "\", \"" package;
-      in
-      ''${packageType} "${packageString}"'')
-    packageList);
+      in ''${packageType} "${packageString}"'')
+      packageList);
 
   tapLines = generateBrewfileLines "tap" normalizedTaps;
   brewLines = generateBrewfileLines "brew" normalizedBrews;
   caskLines = generateBrewfileLines "cask" normalizedCasks;
-in
-{
+in {
   options.settings.brew = {
     taps = mkOption {
       type = types.listOf (types.oneOf [
         types.str
         (types.listOf types.str)
       ]);
-      default = [ ];
+      default = [];
       description = "A list of taps to install using brew.";
     };
 
@@ -41,7 +46,7 @@ in
         types.str
         (types.listOf types.str)
       ]);
-      default = [ ];
+      default = [];
       description = "A list of brews to install using brew.";
     };
 
@@ -50,7 +55,7 @@ in
         types.str
         (types.listOf types.str)
       ]);
-      default = [ ];
+      default = [];
       description = "A list of casks to install using brew.";
     };
   };

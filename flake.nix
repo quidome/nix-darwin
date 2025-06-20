@@ -11,27 +11,25 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, ... }@inputs:
-    let
-      system = "aarch64-darwin";
+  outputs = {self, ...} @ inputs: let
+    system = "aarch64-darwin";
 
-      pkgs = import inputs.nixpkgs {
-        inherit system;
-      };
-    in
-    {
-      darwinConfigurations = {
-        LMAC-LK9GJDPQXR = inputs.darwin.lib.darwinSystem {
-          inherit pkgs;
-          modules = [ ./darwin ];
-        };
-      };
-
-      homeConfigurations = {
-        "qmeijer@LMAC-LK9GJDPQXR" = inputs.home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-          modules = [ ./home-manager ];
-        };
+    pkgs = import inputs.nixpkgs {
+      inherit system;
+    };
+  in {
+    darwinConfigurations = {
+      LMAC-LK9GJDPQXR = inputs.darwin.lib.darwinSystem {
+        inherit pkgs;
+        modules = [./darwin];
       };
     };
+
+    homeConfigurations = {
+      "qmeijer@LMAC-LK9GJDPQXR" = inputs.home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        modules = [./home-manager];
+      };
+    };
+  };
 }

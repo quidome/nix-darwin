@@ -1,10 +1,13 @@
-{ config, pkgs, lib, ... }:
-with lib;
-let
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
+with lib; let
   cfg = config.programs.alacritty;
   font = "JetBrainsMono Nerd Font";
-in
-{
+in {
   config.programs.alacritty.settings = mkIf cfg.enable {
     selection.save_to_clipboard = true;
     cursor.style = "beam";
@@ -58,7 +61,7 @@ in
 
     terminal.shell = {
       program = "login";
-      args = [ "-fp" config.home.username ];
+      args = ["-fp" config.home.username];
     };
   };
 }

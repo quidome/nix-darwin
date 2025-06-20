@@ -1,9 +1,11 @@
-{ config, lib, ... }:
-with lib;
-let
-  gitEnabled = config.programs.git.enable;
-in
 {
+  config,
+  lib,
+  ...
+}:
+with lib; let
+  gitEnabled = config.programs.git.enable;
+in {
   config.programs.git = mkIf gitEnabled {
     delta.enable = true;
     extraConfig = {
