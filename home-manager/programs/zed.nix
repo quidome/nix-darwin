@@ -109,7 +109,11 @@
         ];
       };
       languages = {
-        Nix.language-servers = ["nixd" "!nil"];
+        Nix.language_servers = ["nixd" "!nil"];
+        Nix.formatter.external = {
+          command = lib.getExe pkgs.alejandra;
+          arguments = ["--quiet" "--"];
+        };
       };
 
       lsp = {
