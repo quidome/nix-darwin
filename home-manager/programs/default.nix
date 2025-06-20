@@ -6,7 +6,7 @@
     ./mise.nix
     ./starship.nix
     ./vscode.nix
-    ./zed.nix
+    ./zed-editor.nix
     ./zellij
     ./zsh.nix
   ];
