@@ -38,6 +38,7 @@ in
       ".mise.toml"
       ".venv"
       ".envrc"
+      ".zed"
     ];
   };
 }
