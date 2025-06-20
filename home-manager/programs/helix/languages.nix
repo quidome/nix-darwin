@@ -6,8 +6,7 @@ lib.mkIf config.programs.helix.enable {
     gopls
     delve
     marksman # markdown lsp
-    nil # nix lsp
-    nixpkgs-fmt # nix formatter
+    nixd
     nodePackages.bash-language-server
     nodePackages.dockerfile-language-server-nodejs
     nodePackages.prettier # json formatter
@@ -15,9 +14,6 @@ lib.mkIf config.programs.helix.enable {
     nodePackages.vscode-json-languageserver
     nodePackages.yaml-language-server
     python311Packages.python-lsp-server
-
-    rustfmt
-    rust-analyzer
 
     vscode-extensions.vadimcn.vscode-lldb
   ];
@@ -37,20 +33,15 @@ lib.mkIf config.programs.helix.enable {
       {
         name = "nix";
         auto-format = true;
-        formatter.command = lib.getExe nixpkgs-fmt;
-        language-servers = [
-          "nil"
-          "buffer-language-server"
-        ];
+        language-servers = [ "nixd" ];
+        formatter.command = lib.getExe alejandra;
       }
-
 
       {
         name = "rust";
         auto-format = true;
         language-servers = [
           "rust-analyzer"
-          # "buffer-language-server"
         ];
         formatter = {
           command = lib.getExe rustfmt;
@@ -60,7 +51,6 @@ lib.mkIf config.programs.helix.enable {
     ];
 
     language-server = {
-
       rust-analyzer = {
         command = lib.getExe rust-analyzer;
         config.rust-analyzer = {
