@@ -2,6 +2,7 @@
 {
   imports = [
     ./secrets.nix
+    ./bol.nix
     ./brew.nix
     ./gcloud.nix
     ./programs
@@ -164,8 +165,6 @@
       "homebrew/services"
     ];
     brews = [
-      "homebrew/homebrew-bol/proxer"
-      "homebrew/homebrew-bol/bol-cli"
       "bitwarden-cli"
       "openssl"
       "xz"
