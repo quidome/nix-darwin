@@ -14,7 +14,7 @@
     language.ctype = "en_IE.UTF-8";
     stateVersion = "25.05";
 
-    packages = with pkgs;  [
+    packages = with pkgs; [
       # Core
       # bitwarden-cli
       bottom
