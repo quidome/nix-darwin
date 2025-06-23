@@ -11,7 +11,7 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = {self, ...} @ inputs: let
+  outputs = {...} @ inputs: let
     system = "aarch64-darwin";
 
     pkgs = import inputs.nixpkgs {
