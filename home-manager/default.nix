@@ -111,6 +111,8 @@
 
   programs.ssh.enable = true;
 
+  programs.zed-editor.enable = true;
+
   programs.zellij.enable = lib.mkDefault true;
 
   programs.zoxide.enable = true;
