@@ -11,7 +11,7 @@ in {
     settings.brew.casks = ["google-cloud-sdk"];
 
     programs.zsh = lib.mkIf config.programs.zsh.enable {
-      initContent = ''
+      initContent = lib.mkOrder 550 ''
         # Configure gcloud
         . "/opt/homebrew/share/google-cloud-sdk/path.zsh.inc"
         . "/opt/homebrew/share/google-cloud-sdk/completion.zsh.inc"

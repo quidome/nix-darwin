@@ -62,7 +62,7 @@ in {
 
   config = {
     # Configure Zsh to initialize Homebrew if Zsh is enabled
-    programs.zsh.initContent = mkIf config.programs.zsh.enable ''
+    programs.zsh.initContent = mkOrder 549 ''
       # Initialize Homebrew environment
       eval "$(/opt/homebrew/bin/brew shellenv)"
     '';
