@@ -20,7 +20,6 @@
 
     packages = with pkgs; [
       # Core
-      # bitwarden-cli
       bottom
       cocoapods
 
