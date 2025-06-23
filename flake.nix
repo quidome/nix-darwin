@@ -17,19 +17,25 @@
     pkgs = import inputs.nixpkgs {
       inherit system;
     };
-  in {
-    darwinConfigurations = {
-      LMAC-LK9GJDPQXR = inputs.darwin.lib.darwinSystem {
+
+    mkDarwin = host:
+      inputs.darwin.lib.darwinSystem {
         inherit pkgs;
         modules = [./darwin];
       };
-    };
 
-    homeConfigurations = {
-      "qmeijer@LMAC-LK9GJDPQXR" = inputs.home-manager.lib.homeManagerConfiguration {
+    mkHome = user: host:
+      inputs.home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         modules = [./home-manager];
       };
+  in {
+    darwinConfigurations = {
+      LMAC-LK9GJDPQXR = mkDarwin "LMAC-LK9GJDPQXR";
+    };
+
+    homeConfigurations = {
+      "qmeijer@LMAC-LK9GJDPQXR" = mkHome "qmeijer" "LMAC-LK9GJDPQXR";
     };
   };
 }
