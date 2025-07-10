@@ -163,6 +163,10 @@
     enable = true;
     pinentry.package = pkgs.pinentry_mac;
     enableSshSupport = true;
+    extraConfig = ''
+     allow-emacs-pinentry
+     allow-loopback-pinentry
+    '';
   };
 
   settings.brew = {

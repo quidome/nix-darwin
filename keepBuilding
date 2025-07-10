@@ -1,11 +1,20 @@
 #!/usr/bin/env bash
 
-keepBuilding() {
-    (( counter++ ))
-    darwin-rebuild switch --flake . || keepBuilding
+keepBuildingDarwin() {
+    (( counter_darwin++ ))
+    sudo darwin-rebuild switch --flake . || keepBuilding
 }
 
-counter=0
-keepBuilding
+keepBuildingHome() {
+    (( counter_hm++))
+    home-manager --flake . switch || keepBuildingHome
+}
 
-echo "built in ${counter} iterations"
+
+counter_darwin=0
+counter_hm=0
+keepBuildingDarwin
+keepBuildingHome
+
+echo "built darwin in ${counter_darwin} iterations"
+echo "built home   in ${counter_hm} iterations"
