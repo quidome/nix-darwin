@@ -186,7 +186,7 @@
       "bitwarden"
       "browserosaurus"
       "element"
-      "emacs"
+      "emacs-app"
       "logseq"
       "obsidian"
       "raycast"

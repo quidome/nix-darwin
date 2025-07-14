@@ -8,7 +8,7 @@ in {
   options.settings.gcloud.enable = lib.mkEnableOption "gcloud";
 
   config = lib.mkIf cfg.enable {
-    settings.brew.casks = ["google-cloud-sdk"];
+    settings.brew.casks = ["gcloud-cli"];
 
     programs.zsh = lib.mkIf config.programs.zsh.enable {
       initContent = lib.mkOrder 550 ''
