@@ -2,7 +2,7 @@
 
 keepBuildingDarwin() {
     (( counter_darwin++ ))
-    sudo darwin-rebuild switch --flake . || keepBuilding
+    sudo darwin-rebuild switch --flake . || keepBuildingDarwin
 }
 
 keepBuildingHome() {
