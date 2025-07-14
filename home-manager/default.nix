@@ -185,7 +185,6 @@
       "arc"
       "bitwarden"
       "browserosaurus"
-      "element"
       "emacs-app"
       "logseq"
       "obsidian"
