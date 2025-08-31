@@ -35,6 +35,10 @@ in {
             command = lib.getExe pkgs.alejandra;
             arguments = ["--quiet" "--"];
           };
+          YAML.prettier = {
+            allowed = true;
+            singleQuote = false;
+          };
         };
 
         lsp = {
