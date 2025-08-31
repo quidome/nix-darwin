@@ -33,6 +33,7 @@
       gopass
       jless
       jq
+      just
       m-cli # useful macOS CLI commands
       nushell
       pandoc
