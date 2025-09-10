@@ -3,10 +3,11 @@
 set positional-arguments := true
 
 # Default recipe (runs when just is called without arguments)
-default: all
+default:
+    @just --list
 
 # Run all tasks
-all: update-flake collect-garbage build _archive-flake update-nixpkgs-cache-index
+all: collect-garbage update-flake build _archive-flake update-nixpkgs-cache-index brew-bundle
     @echo "Update completed successfully"
 
 # Nix switch system and home
