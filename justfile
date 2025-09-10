@@ -1,6 +1,6 @@
 # Justfile
 
-set positional-arguments
+set positional-arguments := true
 
 # Default recipe (runs when just is called without arguments)
 default: all
@@ -45,6 +45,7 @@ update-flake:
     git push || echo "Failed to push flake.lock update"
 
 # Private recipes
+
 # Parameterized build task
 _build-env command:
     #!/usr/bin/env bash
