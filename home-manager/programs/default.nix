@@ -3,6 +3,7 @@
     ./alacritty.nix
     ./git.nix
     ./helix
+    ./jujutsu.nix
     ./mise.nix
     ./starship.nix
     ./vscode.nix
