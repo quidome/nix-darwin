@@ -1,5 +1,6 @@
 # nix-darwin
 
+
 Forked from https://github.com/quidome/nix-config to reduce complexity.
 
 ## Install nix on Macos
@@ -30,6 +31,8 @@ After this is completed, we have a fully installed darwin-nix system, based on f
 
 ## Updating (outdated)
 
+TODO: update
+
 ### Update flake inputs
 
 ```sh
@@ -41,3 +44,5 @@ nix flake update
 ```sh
 darwin-nix --flake . switch
 ```
+
+## Update using just
