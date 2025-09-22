@@ -42,3 +42,5 @@ nix flake update
 ```sh
 darwin-nix --flake . switch
 ```
+
+## Update using just
