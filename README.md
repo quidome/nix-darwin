@@ -28,7 +28,7 @@ Once nix is working, we need to perform an initial install. This initial install
 
 After this is completed, we have a fully installed darwin-nix system, based on flakes.
 
-## Updating
+## Updating (outdated)
 
 ### Update flake inputs
 
