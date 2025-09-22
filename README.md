@@ -31,6 +31,8 @@ After this is completed, we have a fully installed darwin-nix system, based on f
 
 ## Updating (outdated)
 
+TODO: update
+
 ### Update flake inputs
 
 ```sh
