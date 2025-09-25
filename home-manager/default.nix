@@ -62,6 +62,9 @@
       libyaml
       postgresql
       stern
+      kustomize
+      kubeseal
+      pwgen
 
       # Useful nix related tools
       alejandra # nix formatting tool
