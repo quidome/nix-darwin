@@ -7,7 +7,7 @@ default:
     @just --list
 
 # Run all tasks
-all: collect-garbage update-flake build _archive-flake update-nixpkgs-cache-index brew-bundle
+all: update-flake build collect-garbage _archive-flake update-nixpkgs-cache-index brew-bundle
     @echo "Update completed successfully"
 
 # Nix switch system and home
