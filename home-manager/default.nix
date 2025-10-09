@@ -181,6 +181,7 @@
     ];
     brews = [
       "bitwarden-cli"
+      "gemini-cli"
       "openssl"
       "xz"
       "jenv"
