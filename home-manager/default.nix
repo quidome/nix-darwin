@@ -191,7 +191,6 @@
     casks = [
       "arc"
       "bitwarden"
-      "browserosaurus"
       "emacs-app"
       "logseq"
       "obsidian"
