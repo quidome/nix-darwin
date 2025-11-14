@@ -6,6 +6,7 @@
     home-manager
     git
     git-crypt
+      just
   ];
 
   fonts.packages = [pkgs.nerd-fonts.jetbrains-mono];
